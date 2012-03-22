@@ -1,0 +1,96 @@
+*GrepHere.txt*          List occurrences in the current buffer in the quickfix window.
+
+			 GREP HERE    by Ingo Karkat
+								*GrepHere.vim*
+description			|GrepHere-description|
+usage				|GrepHere-usage|
+installation			|GrepHere-installation|
+integration			|GrepHere-integration|
+limitations			|GrepHere-limitations|
+known problems			|GrepHere-known-problems|
+todo				|GrepHere-todo|
+history				|GrepHere-history|
+
+==============================================================================
+DESCRIPTION						*GrepHere-description*
+
+This plugin defines a command and mapping to quickly list all occurrences of
+the current search pattern in the |quickfix| list. This is useful to get a
+somewhat persistent list of matches that act like bookmarks, so you can recall
+them later (when your search pattern has changed).
+
+HOW IT WORKS								     *
+
+The plugin uses |:vimgrep| over the current buffer.
+
+SOURCE									     *
+
+Inspired by vimtip #483: Using GREP for a "list occurrences" and quickfix help
+command.
+    http://vim.wikia.com/wiki/Search_using_quickfix_to_list_occurrences >
+    command GREP :execute 'grep '.expand('<cword>') expand('%') | :copen | cc
+<
+RELATED WORKS								     *
+
+==============================================================================
+USAGE						     *GrepHere-usage*
+						    *:GrepHere* *:GrepHereAdd*
+:GrepHere [{pattern}]
+:GrepHere /{pattern}/[g][j]
+:GrepHereAdd [{pattern}]
+:GrepHereAdd /{pattern}/[g][j]
+			Grep the passed pattern (or current search string if
+			omitted) in the current file (or the current entry of
+			the quickfix list).
+								       *<A-?>*
+<A-?>			Grep the current search string in the current file and
+			show matching lines in the quickfix window (but don't
+			go there).
+			This is similar to |[N| defined by
+			|FindOccurrence.vim|, but uses the quickfix list
+			instead of just printing all matching lines.
+
+==============================================================================
+INSTALLATION				      *GrepHere-installation*
+
+This script is packaged as a |vimball|. If you have the "gunzip" decompressor
+in your PATH, simply edit the *.vba.gz package in Vim; otherwise, decompress
+the archive first, e.g. using WinZip. Inside Vim, install by sourcing the
+vimball or via the |:UseVimball| command. >
+    vim GrepHere.vba.gz
+    :so %
+To uninstall, use the |:RmVimball| command.
+
+DEPENDENCIES				      *GrepHere-dependencies*
+
+- Requires Vim 7.0 or higher.
+- Requires the GrepCommands plugin (vimscript #0000)
+
+==============================================================================
+INTEGRATION				       *GrepHere-integration*
+
+==============================================================================
+LIMITATIONS				       *GrepHere-limitations*
+
+KNOWN PROBLEMS				    *GrepHere-known-problems*
+
+TODO						      *GrepHere-todo*
+
+IDEAS						     *GrepHere-ideas*
+
+==============================================================================
+HISTORY						   *GrepHere-history*
+
+GOAL
+First published version.
+
+0.01	11-Jun-2003
+Started development.
+
+==============================================================================
+Copyright: (C) 2003-2012 Ingo Karkat
+The VIM LICENSE applies to this script; see |copyright|.
+
+Maintainer:	Ingo Karkat <ingo@karkat.de>
+==============================================================================
+ vim:tw=78:ts=8:ft=help:norl:
