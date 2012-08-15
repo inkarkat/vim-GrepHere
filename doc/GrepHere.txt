@@ -32,6 +32,11 @@ command.
 <
 RELATED WORKS								     *
 
+- outline (vimscript #1947) creates a custom view of the file based on regex,
+  in a scratch buffer
+- ttoc (vimscript# 2014) is based on outline and creates a regexp-based table
+  of contents of the current buffer
+
 ==============================================================================
 USAGE						     *GrepHere-usage*
 						    *:GrepHere* *:GrepHereAdd*
