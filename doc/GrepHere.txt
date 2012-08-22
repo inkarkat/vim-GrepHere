@@ -69,7 +69,7 @@ To uninstall, use the |:RmVimball| command.
 DEPENDENCIES				      *GrepHere-dependencies*
 
 - Requires Vim 7.0 or higher.
-- Requires the GrepCommands plugin (vimscript #0000)
+- Requires the GrepCommands plugin (vimscript #4173)
 
 ==============================================================================
 INTEGRATION				       *GrepHere-integration*
