@@ -10,7 +10,11 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
-"   1.00.010	21-Mar-2012	Rename to GrepHere.vim, define <Plug>-mapping,
+"   1.00.011	24-Aug-2012	Add mappings for the [whole] <cword>, and align
+"				the mapping keys with the SearchPosition plugin.
+"				Factor out the mapping logic to GrepHere#List().
+"				Extract g:GrepHere_MappingGrepFlags.
+"	010	21-Mar-2012	Rename to GrepHere.vim, define <Plug>-mapping,
 "				factor out function to autoload script and
 "				separate documentation.
 "	009	19-Mar-2012	Extract vimgrep wrapping to new GrepCommands
@@ -45,6 +49,13 @@ if exists('g:loaded_GrepHere') || v:version < 700
 endif
 let g:loaded_GrepHere = 1
 
+"- configuration ---------------------------------------------------------------
+
+if ! exists('g:GrepHere_MappingGrepFlags')
+    let g:GrepHere_MappingGrepFlags = 'gj'
+endif
+
+
 "- commands --------------------------------------------------------------------
 
 command! -count -nargs=? GrepHere    call GrepHere#Grep(<count>, 'vimgrep', <q-args>)
@@ -53,9 +64,19 @@ command! -count -nargs=? GrepHereAdd call GrepHere#Grep(<count>, 'vimgrepadd', <
 
 "- mappings --------------------------------------------------------------------
 
-nnoremap <silent> <Plug>(GrepHere) :<C-u>if GrepHere#Grep(0, 'vimgrep', '', 'j')<Bar>copen<Bar>call ingowindow#GotoPreviousWindow()<Bar>endif<CR>
-if ! hasmapto('<Plug>(GrepHere)', 'n')
-    nmap <A-?> <Plug>(GrepHere)
+nnoremap <silent> <Plug>(GrepHereCurrent)    :<C-u>call GrepHere#List('')<CR>
+nnoremap <silent> <Plug>(GrepHereWholeCword) :<C-u>call GrepHere#List(GrepHere#SetCword(1))<CR>
+nnoremap <silent> <Plug>(GrepHereCword)      :<C-u>call GrepHere#List(GrepHere#SetCword(0))<CR>
+if ! hasmapto('<Plug>(GrepHereCurrent)', 'n')
+    nmap <A-N> <Plug>(GrepHereCurrent)
 endif
+if ! hasmapto('<Plug>(GrepHereWholeCword)', 'n')
+    nmap <A-M> <Plug>(GrepHereWholeCword)
+endif
+if ! hasmapto('<Plug>(GrepHereCword)', 'n')
+    nmap g<A-M> <Plug>(GrepHereCword)
+endif
+
+
 
 " vim: set ts=8 sts=4 sw=4 noexpandtab ff=unix fdm=syntax :
