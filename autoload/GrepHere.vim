@@ -8,8 +8,9 @@
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
+"
 " REVISION	DATE		REMARKS
-"	001	21-Mar-2012	file creation from plugin script
+"   1.00.001	21-Mar-2012	file creation from plugin script
 
 function! GrepHere#Grep( count, grepCommand, pattern, ... )
     let l:currentFile = expand('%')
