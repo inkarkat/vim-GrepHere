@@ -8,8 +8,9 @@
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
+"
 " REVISION	DATE		REMARKS
-"	010	21-Mar-2012	Rename to GrepHere.vim, define <Plug>-mapping,
+"   1.00.010	21-Mar-2012	Rename to GrepHere.vim, define <Plug>-mapping,
 "				factor out function to autoload script and
 "				separate documentation.
 "	009	19-Mar-2012	Extract vimgrep wrapping to new GrepCommands
