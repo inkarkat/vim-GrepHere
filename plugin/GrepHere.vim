@@ -2,7 +2,7 @@
 "
 " DEPENDENCIES:
 "   - GrepHere.vim autoload script
-"   - ingowindow.vim autoload script
+"   - ingointegration.vim autoload script
 "
 " Copyright: (C) 2003-2012 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
@@ -10,8 +10,9 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
-"   1.00.011	24-Aug-2012	Add mappings for the [whole] <cword>, and align
-"				the mapping keys with the SearchPosition plugin.
+"   1.00.011	24-Aug-2012	Add mappings for the [whole] <cword> and visual
+"				selection, and align the mapping keys with the
+"				SearchPosition plugin.
 "				Factor out the mapping logic to GrepHere#List().
 "				Extract g:GrepHere_MappingGrepFlags.
 "	010	21-Mar-2012	Rename to GrepHere.vim, define <Plug>-mapping,
@@ -67,6 +68,7 @@ command! -count -nargs=? GrepHereAdd call GrepHere#Grep(<count>, 'vimgrepadd', <
 nnoremap <silent> <Plug>(GrepHereCurrent)    :<C-u>call GrepHere#List('')<CR>
 nnoremap <silent> <Plug>(GrepHereWholeCword) :<C-u>call GrepHere#List(GrepHere#SetCword(1))<CR>
 nnoremap <silent> <Plug>(GrepHereCword)      :<C-u>call GrepHere#List(GrepHere#SetCword(0))<CR>
+vnoremap <silent> <Plug>(GrepHereCword)      :<C-u>call GrepHere#List(substitute(ingointegration#GetVisualSelection(), "\n", '\\n', 'g'))<CR>
 if ! hasmapto('<Plug>(GrepHereCurrent)', 'n')
     nmap <A-N> <Plug>(GrepHereCurrent)
 endif
@@ -75,6 +77,9 @@ if ! hasmapto('<Plug>(GrepHereWholeCword)', 'n')
 endif
 if ! hasmapto('<Plug>(GrepHereCword)', 'n')
     nmap g<A-M> <Plug>(GrepHereCword)
+endif
+if ! hasmapto('<Plug>(GrepHereCword)', 'v')
+    vmap <A-M> <Plug>(GrepHereCword)
 endif
 
 
