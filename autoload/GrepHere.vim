@@ -2,6 +2,7 @@
 "
 " DEPENDENCIES:
 "   - GrepCommands.vim autoload script
+"   - ingosearch.vim autoload script
 "   - ingowindow.vim autoload script
 "
 " Copyright: (C) 2003-2012 Ingo Karkat
@@ -10,7 +11,12 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
-"   1.00.001	21-Mar-2012	file creation from plugin script
+"   1.00.002	24-Aug-2012	Add mappings for the [whole] <cword> via
+"				GrepHere#SetCword(), analog to the
+"				SearchPosition plugin's implementation.
+"				Factor out the mapping logic to GrepHere#List().
+"				Extract g:GrepHere_MappingGrepFlags.
+"	001	21-Mar-2012	file creation from plugin script
 
 function! GrepHere#Grep( count, grepCommand, pattern, ... )
     let l:currentFile = expand('%')
@@ -34,6 +40,22 @@ function! GrepHere#Grep( count, grepCommand, pattern, ... )
     endif
 
     return call('GrepCommands#Grep', [a:count, a:grepCommand, [l:currentFile], a:pattern] + a:000)
+endfunction
+
+let s:pattern = ''
+function! GrepHere#SetCword( isWholeWord )
+    let l:cword = expand('<cword>')
+    if ! empty(l:cword)
+	let s:pattern = ingosearch#LiteralTextToSearchPattern(l:cword, a:isWholeWord, '')
+    endif
+    return s:pattern
+endfunction
+
+function! GrepHere#List( pattern )
+    if GrepHere#Grep(0, 'vimgrep', a:pattern, g:GrepHere_MappingGrepFlags)
+	copen
+	call ingowindow#GotoPreviousWindow()
+    endif
 endfunction
 
 " vim: set ts=8 sts=4 sw=4 noexpandtab ff=unix fdm=syntax :
