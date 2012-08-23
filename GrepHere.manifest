@@ -1,0 +1,4 @@
+autoload/GrepHere.vim
+autoload/ingowindow.vim
+plugin/GrepHere.vim
+doc/GrepHere.txt
