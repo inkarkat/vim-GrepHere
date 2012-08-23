@@ -5,7 +5,6 @@
 description			|GrepHere-description|
 usage				|GrepHere-usage|
 installation			|GrepHere-installation|
-integration			|GrepHere-integration|
 limitations			|GrepHere-limitations|
 known problems			|GrepHere-known-problems|
 todo				|GrepHere-todo|
@@ -30,11 +29,19 @@ command.
     http://vim.wikia.com/wiki/Search_using_quickfix_to_list_occurrences >
     command GREP :execute 'grep '.expand('<cword>') expand('%') | :copen | cc
 <
+SEE ALSO								     *
+
+- The GrepCommands plugin (vimscript #4173) provides additional grep commands
+  covering arguments, buffers, windows and tab pages.
+- The FindOccurrence plugin (vimscript #0000) can also show all occurrences of
+  the cword, current search results, etc., but instead of the quickfix list,
+  the result is either jumped to or listed.
+
 RELATED WORKS								     *
 
 - outline (vimscript #1947) creates a custom view of the file based on regex,
   in a scratch buffer
-- ttoc (vimscript# 2014) is based on outline and creates a regexp-based table
+- ttoc (vimscript #2014) is based on outline and creates a regexp-based table
   of contents of the current buffer
 
 ==============================================================================
@@ -72,10 +79,10 @@ DEPENDENCIES				      *GrepHere-dependencies*
 - Requires the GrepCommands plugin (vimscript #4173)
 
 ==============================================================================
-INTEGRATION				       *GrepHere-integration*
-
-==============================================================================
 LIMITATIONS				       *GrepHere-limitations*
+
+- Unnamed buffers cannot be searched via |:vimgrep|, resulting in "E32: no
+  file name".
 
 KNOWN PROBLEMS				    *GrepHere-known-problems*
 
