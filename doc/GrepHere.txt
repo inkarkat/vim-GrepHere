@@ -110,6 +110,13 @@ CONFIGURATION					      *GrepHere-configuration*
 
 For a permanent configuration, put the following commands into your |vimrc|:
 
+					    *g:GrepHere_EmptyCommandGrepFlags*
+The |:GrepHere| command without arguments lists all occurrences, and (other
+than the |ALT-SHIFT-N| mapping), jumps to the first occurrence. You can change
+that via: >
+    let g:GrepHere_EmptyCommandGrepFlags = 'g'
+When you provide any arguments to |:GrepHere|, provide the flags there, if
+desired.
 						 *g:GrepHere_MappingGrepFlags*
 By default, the mappings list all occurrences in a line and do not jump to the
 first match; you can adapt the behavior by removing some of the |:vimgrep|
@@ -139,6 +146,11 @@ IDEAS							      *GrepHere-ideas*
 
 ==============================================================================
 HISTORY							    *GrepHere-history*
+
+1.10	24-Aug-2012
+Make default flags for an empty :GrepHere command configurable via
+g:GrepHere_EmptyCommandGrepFlags. Default to 'g': List all occurrences, jump
+to first occurrence.
 
 1.00	24-Aug-2012
 First published version.
