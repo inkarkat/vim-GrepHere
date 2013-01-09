@@ -147,7 +147,7 @@ IDEAS							      *GrepHere-ideas*
 ==============================================================================
 HISTORY							    *GrepHere-history*
 
-1.10	24-Aug-2012
+1.10	06-Sep-2012
 Make default flags for an empty :GrepHere command configurable via
 g:GrepHere_EmptyCommandGrepFlags. Default to 'g': List all occurrences, jump
 to first occurrence.
