@@ -15,7 +15,7 @@ history				|GrepHere-history|
 DESCRIPTION						*GrepHere-description*
 
 This plugin defines a command and mappings to quickly list all occurrences of
-the current search pattern, passed pattern, current word or selection in the
+the last search pattern, passed pattern, current word or selection in the
 |quickfix| list. This is useful to get a somewhat persistent list of matches
 that act like bookmarks, so you can recall them later (when your search
 pattern has changed).
@@ -36,7 +36,7 @@ SEE ALSO								     *
 - The GrepCommands plugin (vimscript #4173) provides additional grep commands
   covering arguments, buffers, windows and tab pages.
 - The FindOccurrence plugin (vimscript #0000) can also show all occurrences of
-  the <cword>, current search results, etc., but instead of the quickfix list,
+  the <cword>, last search pattern, etc., but instead of the quickfix list,
   the result is either jumped to or listed.
 - The SearchPosition plugin (vimscript #2634) shows the relation of the cursor
   position to the other matches of the search pattern, and provides similar
@@ -57,12 +57,12 @@ USAGE							      *GrepHere-usage*
 :GrepHere /{pattern}/[g][j]
 :GrepHereAdd [{pattern}]
 :GrepHereAdd /{pattern}/[g][j]
-			Grep the passed pattern (or current search pattern if
+			Grep the passed pattern (or last search pattern if
 			omitted) in the current file (or the current entry of
 			the quickfix list).
 
 								 *ALT-SHIFT-N*
-<A-N>			Grep the current search pattern in the current file
+<A-N>			Grep the last search pattern in the current file
 			and show matching lines in the quickfix window (but
 			don't go there).
 			This is similar to |[N| defined by
