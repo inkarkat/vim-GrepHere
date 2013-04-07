@@ -1,4 +1,6 @@
-autoload/GrepHere.vim
+autoload/ingointegration.vim
+autoload/ingosearch.vim
 autoload/ingowindow.vim
+autoload/GrepHere.vim
 plugin/GrepHere.vim
 doc/GrepHere.txt
