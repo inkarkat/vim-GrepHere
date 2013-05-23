@@ -10,6 +10,9 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.10.012	24-Aug-2012	Make default flags for an empty :GrepHere
+"				command configurable via
+"				g:GrepHere_EmptyCommandGrepFlags.
 "   1.00.011	24-Aug-2012	Add mappings for the [whole] <cword> and visual
 "				selection, and align the mapping keys with the
 "				SearchPosition plugin.
@@ -52,6 +55,9 @@ let g:loaded_GrepHere = 1
 
 "- configuration ---------------------------------------------------------------
 
+if ! exists('g:GrepHere_EmptyCommandGrepFlags')
+    let g:GrepHere_EmptyCommandGrepFlags = 'g'
+endif
 if ! exists('g:GrepHere_MappingGrepFlags')
     let g:GrepHere_MappingGrepFlags = 'gj'
 endif
@@ -81,7 +87,5 @@ endif
 if ! hasmapto('<Plug>(GrepHereCword)', 'v')
     vmap <A-M> <Plug>(GrepHereCword)
 endif
-
-
 
 " vim: set ts=8 sts=4 sw=4 noexpandtab ff=unix fdm=syntax :
