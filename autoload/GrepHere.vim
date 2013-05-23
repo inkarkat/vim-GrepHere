@@ -3,14 +3,16 @@
 " DEPENDENCIES:
 "   - GrepCommands.vim autoload script
 "   - ingosearch.vim autoload script
-"   - ingowindow.vim autoload script
+"   - ingo/window/quickfix.vim autoload script
+"   - ingo/window/switches.vim autoload script
 "
-" Copyright: (C) 2003-2012 Ingo Karkat
+" Copyright: (C) 2003-2013 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.11.004	08-Apr-2013	Move ingowindow.vim functions into ingo-library.
 "   1.10.003	24-Aug-2012	Make default flags for an empty :GrepHere
 "				command configurable via
 "				g:GrepHere_EmptyCommandGrepFlags.
@@ -25,10 +27,10 @@
 function! s:GrepHere( count, grepCommand, pattern, patternFlags )
     let l:currentFile = expand('%')
 
-    if empty(l:currentFile) && ingowindow#IsQuickfixList()
+    if empty(l:currentFile) && ingo#window#quickfix#IsQuickfixList()
 	" Use the file from the current line in the quickfix window.
-	let l:currentFile = ingowindow#ParseFileFromQuickfixList()
-	if empty(l:currentFile) && ingowindow#GotoPreviousWindow()
+	let l:currentFile = ingo#window#quickfix#ParseFileFromQuickfixList()
+	if empty(l:currentFile) && ingo#window#switches#GotoPreviousWindow()
 	    " If the cursor is on no file name line in the quickfix window, use
 	    " the previous window instead.
 	    let l:currentFile = expand('%:p')
@@ -62,7 +64,7 @@ endfunction
 function! GrepHere#List( pattern )
     if s:GrepHere(0, 'vimgrep', a:pattern, g:GrepHere_MappingGrepFlags)
 	copen
-	call ingowindow#GotoPreviousWindow()
+	call ingo#window#switches#GotoPreviousWindow()
     endif
 endfunction
 
