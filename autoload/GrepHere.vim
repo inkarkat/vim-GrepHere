@@ -2,7 +2,7 @@
 "
 " DEPENDENCIES:
 "   - GrepCommands.vim autoload script
-"   - ingosearch.vim autoload script
+"   - ingo/regexp.vim autoload script
 "   - ingo/window/quickfix.vim autoload script
 "   - ingo/window/switches.vim autoload script
 "
@@ -12,6 +12,7 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.11.005	24-May-2013	Move ingosearch.vim to ingo-library.
 "   1.11.004	08-Apr-2013	Move ingowindow.vim functions into ingo-library.
 "   1.10.003	24-Aug-2012	Make default flags for an empty :GrepHere
 "				command configurable via
@@ -56,7 +57,7 @@ let s:pattern = ''
 function! GrepHere#SetCword( isWholeWord )
     let l:cword = expand('<cword>')
     if ! empty(l:cword)
-	let s:pattern = ingosearch#LiteralTextToSearchPattern(l:cword, a:isWholeWord, '')
+	let s:pattern = ingo#regexp#FromLiteralText(l:cword, a:isWholeWord, '')
     endif
     return s:pattern
 endfunction
