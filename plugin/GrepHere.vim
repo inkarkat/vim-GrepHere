@@ -2,14 +2,16 @@
 "
 " DEPENDENCIES:
 "   - GrepHere.vim autoload script
-"   - ingointegration.vim autoload script
+"   - ingo/selection.vim autoload script
 "
-" Copyright: (C) 2003-2012 Ingo Karkat
+" Copyright: (C) 2003-2013 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.11.004	24-May-2013	Move ingointegration#GetVisualSelection() into
+"				ingo-library.
 "   1.10.012	24-Aug-2012	Make default flags for an empty :GrepHere
 "				command configurable via
 "				g:GrepHere_EmptyCommandGrepFlags.
@@ -74,7 +76,7 @@ command! -count -nargs=? GrepHereAdd call GrepHere#Grep(<count>, 'vimgrepadd', <
 nnoremap <silent> <Plug>(GrepHereCurrent)    :<C-u>call GrepHere#List('')<CR>
 nnoremap <silent> <Plug>(GrepHereWholeCword) :<C-u>call GrepHere#List(GrepHere#SetCword(1))<CR>
 nnoremap <silent> <Plug>(GrepHereCword)      :<C-u>call GrepHere#List(GrepHere#SetCword(0))<CR>
-vnoremap <silent> <Plug>(GrepHereCword)      :<C-u>call GrepHere#List(substitute(ingointegration#GetVisualSelection(), "\n", '\\n', 'g'))<CR>
+vnoremap <silent> <Plug>(GrepHereCword)      :<C-u>call GrepHere#List(substitute(ingo#selection#Get(), "\n", '\\n', 'g'))<CR>
 if ! hasmapto('<Plug>(GrepHereCurrent)', 'n')
     nmap <A-N> <Plug>(GrepHereCurrent)
 endif
