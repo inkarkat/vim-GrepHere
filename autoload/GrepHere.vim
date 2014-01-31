@@ -2,6 +2,7 @@
 "
 " DEPENDENCIES:
 "   - GrepCommands.vim autoload script
+"   - ingo/msg.vim autoload script
 "   - ingo/regexp.vim autoload script
 "   - ingo/window/quickfix.vim autoload script
 "   - ingo/window/switches.vim autoload script
@@ -12,6 +13,7 @@
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.11.006	14-Jun-2013	Use ingo/msg.vim.
 "   1.11.005	24-May-2013	Move ingosearch.vim to ingo-library.
 "   1.11.004	08-Apr-2013	Move ingowindow.vim functions into ingo-library.
 "   1.10.003	24-Aug-2012	Make default flags for an empty :GrepHere
@@ -40,9 +42,7 @@ function! s:GrepHere( count, grepCommand, pattern, patternFlags )
     endif
 
     if empty(l:currentFile)
-	echohl ErrorMsg
-	echomsg 'E32: No file name'
-	echohl None
+	call ingo#msg#ErrorMsg('E32: No file name')
 	return 0
     endif
 
