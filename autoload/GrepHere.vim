@@ -7,12 +7,13 @@
 "   - ingo/window/quickfix.vim autoload script
 "   - ingo/window/switches.vim autoload script
 "
-" Copyright: (C) 2003-2013 Ingo Karkat
+" Copyright: (C) 2003-2014 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.11.007	01-Feb-2014	ENH: Allow [range] for :GrepHere.
 "   1.11.006	14-Jun-2013	Use ingo/msg.vim.
 "   1.11.005	24-May-2013	Move ingosearch.vim to ingo-library.
 "   1.11.004	08-Apr-2013	Move ingowindow.vim functions into ingo-library.
@@ -27,7 +28,7 @@
 "				Extract g:GrepHere_MappingGrepFlags.
 "	001	21-Mar-2012	file creation from plugin script
 
-function! s:GrepHere( count, grepCommand, pattern, patternFlags )
+function! s:GrepHere( count, grepCommand, pattern, patternFlags, patternPrefix )
     let l:currentFile = expand('%')
 
     if empty(l:currentFile) && ingo#window#quickfix#IsQuickfixList()
@@ -46,11 +47,19 @@ function! s:GrepHere( count, grepCommand, pattern, patternFlags )
 	return 0
     endif
 
-    return GrepCommands#Grep(a:count, a:grepCommand, [l:currentFile], a:pattern, a:patternFlags)
+    return GrepCommands#Grep(a:count, a:grepCommand, [l:currentFile], a:pattern, a:patternFlags, a:patternPrefix)
 endfunction
 
-function! GrepHere#Grep( count, grepCommand, pattern )
-    return s:GrepHere(a:count, a:grepCommand, a:pattern, (empty(a:pattern) ? g:GrepHere_EmptyCommandGrepFlags : ''))
+function! GrepHere#Grep( startLnum, endLnum, count, grepCommand, pattern )
+    let l:patternPrefix = ''
+    if a:startLnum > 1
+	let l:patternPrefix .= '\%>' . (a:startLnum - 1) . 'l'
+    endif
+    if a:endLnum < line('$')
+	let l:patternPrefix .= '\%<' . (a:endLnum + 1) . 'l'
+    endif
+
+    return s:GrepHere(a:count, a:grepCommand, a:pattern, (empty(a:pattern) ? g:GrepHere_EmptyCommandGrepFlags : ''), l:patternPrefix)
 endfunction
 
 let s:pattern = ''
@@ -63,7 +72,7 @@ function! GrepHere#SetCword( isWholeWord )
 endfunction
 
 function! GrepHere#List( pattern )
-    if s:GrepHere(0, 'vimgrep', a:pattern, g:GrepHere_MappingGrepFlags)
+    if s:GrepHere(0, 'vimgrep', a:pattern, g:GrepHere_MappingGrepFlags, '')
 	copen
 	call ingo#window#switches#GotoPreviousWindow()
     endif
