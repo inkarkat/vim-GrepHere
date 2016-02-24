@@ -4,12 +4,13 @@
 "   - GrepHere.vim autoload script
 "   - ingo/selection.vim autoload script
 "
-" Copyright: (C) 2003-2013 Ingo Karkat
+" Copyright: (C) 2003-2014 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
 
 " Maintainer:	Ingo Karkat <ingo@karkat.de>
 "
 " REVISION	DATE		REMARKS
+"   1.11.004	01-Feb-2014	ENH: Allow [range] for :GrepHere.
 "   1.11.004	24-May-2013	Move ingointegration#GetVisualSelection() into
 "				ingo-library.
 "   1.10.012	24-Aug-2012	Make default flags for an empty :GrepHere
@@ -67,8 +68,8 @@ endif
 
 "- commands --------------------------------------------------------------------
 
-command! -count -nargs=? GrepHere    call GrepHere#Grep(<count>, 'vimgrep', <q-args>)
-command! -count -nargs=? GrepHereAdd call GrepHere#Grep(<count>, 'vimgrepadd', <q-args>)
+command! -count -range=% -nargs=? GrepHere    call GrepHere#Grep(<line1>, <line2>, <count>, 'vimgrep', <q-args>)
+command! -count -range=% -nargs=? GrepHereAdd call GrepHere#Grep(<line1>, <line2>, <count>, 'vimgrepadd', <q-args>)
 
 
 "- mappings --------------------------------------------------------------------
