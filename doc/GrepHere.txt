@@ -53,13 +53,13 @@ RELATED WORKS								     *
 ==============================================================================
 USAGE							      *GrepHere-usage*
 						    *:GrepHere* *:GrepHereAdd*
-:GrepHere [{pattern}]
-:GrepHere /{pattern}/[g][j]
-:GrepHereAdd [{pattern}]
-:GrepHereAdd /{pattern}/[g][j]
+:[range]GrepHere [{pattern}]
+:[range]GrepHere /{pattern}/[g][j]
+:[range]GrepHereAdd [{pattern}]
+:[range]GrepHereAdd /{pattern}/[g][j]
 			Grep the passed pattern (or last search pattern if
-			omitted) in the current file (or the current entry of
-			the quickfix list).
+			omitted) in (line in [range] of) the current file (or
+			the current entry of the quickfix list).
 
 								 *ALT-SHIFT-N*
 <A-N>			Grep the last search pattern in the current file
@@ -103,9 +103,10 @@ To uninstall, use the |:RmVimball| command.
 DEPENDENCIES					       *GrepHere-dependencies*
 
 - Requires Vim 7.0 or higher.
-- Requires the |ingo-library.vim| plugin (vimscript #4433), version 1.006 or
+- Requires the |ingo-library.vim| plugin (vimscript #4433), version 1.011 or
   higher.
-- Requires the |GrepCommands.vim| plugin (vimscript #4173).
+- Requires the |GrepCommands.vim| plugin (vimscript #4173), version 1.02 or
+  higher.
 
 ==============================================================================
 CONFIGURATION					      *GrepHere-configuration*
@@ -150,7 +151,10 @@ IDEAS							      *GrepHere-ideas*
 HISTORY							    *GrepHere-history*
 
 1.11	RELEASEME
+- ENH: Allow [range] for :GrepHere.
 - Add dependency to ingo-library (vimscript #4433).
+*** You need to upgrade to GrepCommands.vim plugin (vimscript #4173), version
+1.02 or higher! ***
 
 1.10	06-Sep-2012
 Make default flags for an empty :GrepHere command configurable via
@@ -164,7 +168,7 @@ First published version.
 Started development.
 
 ==============================================================================
-Copyright: (C) 2003-2013 Ingo Karkat
+Copyright: (C) 2003-2014 Ingo Karkat
 The VIM LICENSE applies to this plugin; see |copyright|.
 
 Maintainer:	Ingo Karkat <ingo@karkat.de>
