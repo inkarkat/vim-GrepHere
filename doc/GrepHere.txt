@@ -33,15 +33,15 @@ command.
 <
 SEE ALSO								     *
 
-- The GrepCommands plugin (vimscript #4173) provides additional grep commands
-  covering arguments, buffers, windows and tab pages.
-- The FindOccurrence plugin (vimscript #0000) can also show all occurrences of
-  the <cword>, last search pattern, etc., but instead of the quickfix list,
-  the result is either jumped to or listed.
-- The SearchPosition plugin (vimscript #2634) shows the relation of the cursor
-  position to the other matches of the search pattern, and provides similar
-  mappings. Like the quickfix list, it can provide an orientation of where and
-  how many matches there are.
+- The GrepCommands.vim plugin (vimscript #4173) provides additional grep
+  commands covering arguments, buffers, windows and tab pages.
+- The FindOccurrence.vim plugin (vimscript #0000) can also show all
+  occurrences of the <cword>, last search pattern, etc., but instead of the
+  quickfix list, the result is either jumped to or listed.
+- The SearchPosition.vim plugin (vimscript #2634) shows the relation of the
+  cursor position to the other matches of the search pattern, and provides
+  similar mappings. Like the quickfix list, it can provide an orientation of
+  where and how many matches there are.
 
 RELATED WORKS								     *
 
@@ -170,7 +170,7 @@ First published version.
 Started development.
 
 ==============================================================================
-Copyright: (C) 2003-2016 Ingo Karkat
+Copyright: (C) 2003-2017 Ingo Karkat
 The VIM LICENSE applies to this plugin; see |copyright|.
 
 Maintainer:	Ingo Karkat <ingo@karkat.de>
