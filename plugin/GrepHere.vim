@@ -1,8 +1,7 @@
 " GrepHere.vim: List occurrences in the current buffer in the quickfix window.
 "
 " DEPENDENCIES:
-"   - GrepHere.vim autoload script
-"   - ingo/selection.vim autoload script
+"   - ingo-library.vim plugin
 "
 " Copyright: (C) 2003-2019 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
@@ -36,6 +35,8 @@ command! -count -range=% -nargs=? GrepHereAdd call GrepHere#Grep(<line1>, <line2
 nnoremap <silent> <Plug>(GrepHereCurrent)    :<C-u>call GrepHere#List('')<CR>
 nnoremap <silent> <Plug>(GrepHereWholeCword) :<C-u>call GrepHere#List(GrepHere#SetCword(1))<CR>
 nnoremap <silent> <Plug>(GrepHereCword)      :<C-u>call GrepHere#List(GrepHere#SetCword(0))<CR>
+nnoremap <silent> <Plug>(GrepHereWholeCWORD) :<C-u>call GrepHere#List(GrepHere#SetCWORD(1))<CR>
+nnoremap <silent> <Plug>(GrepHereCWORD)      :<C-u>call GrepHere#List(GrepHere#SetCWORD(0))<CR>
 vnoremap <silent> <Plug>(GrepHereCword)      :<C-u>call GrepHere#List(substitute(ingo#selection#Get(), "\n", '\\n', 'g'))<CR>
 if ! hasmapto('<Plug>(GrepHereCurrent)', 'n')
     nmap <A-N> <Plug>(GrepHereCurrent)
@@ -45,6 +46,12 @@ if ! hasmapto('<Plug>(GrepHereWholeCword)', 'n')
 endif
 if ! hasmapto('<Plug>(GrepHereCword)', 'n')
     nmap g<A-M> <Plug>(GrepHereCword)
+endif
+if ! hasmapto('<Plug>(GrepHereWholeCWORD)', 'n')
+    nmap ,<A-M> <Plug>(GrepHereWholeCWORD)
+endif
+if ! hasmapto('<Plug>(GrepHereCWORD)', 'n')
+    nmap g,<A-M> <Plug>(GrepHereCWORD)
 endif
 if ! hasmapto('<Plug>(GrepHereCword)', 'v')
     vmap <A-M> <Plug>(GrepHereCword)

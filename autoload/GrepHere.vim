@@ -1,11 +1,8 @@
 " GrepHere.vim: List occurrences in the current buffer in the quickfix window.
 "
 " DEPENDENCIES:
-"   - GrepCommands.vim autoload script
-"   - ingo/msg.vim autoload script
-"   - ingo/regexp.vim autoload script
-"   - ingo/window/quickfix.vim autoload script
-"   - ingo/window/switches.vim autoload script
+"   - ingo-library.vim plugin
+"   - GrepCommands.vim plugin
 "
 " Copyright: (C) 2003-2019 Ingo Karkat
 "   The VIM LICENSE applies to this script; see ':help copyright'.
@@ -51,6 +48,16 @@ function! GrepHere#SetCword( isWholeWord )
     let l:cword = expand('<cword>')
     if ! empty(l:cword)
 	let s:pattern = ingo#regexp#FromLiteralText(l:cword, a:isWholeWord, '')
+    endif
+    return s:pattern
+endfunction
+function! GrepHere#SetCWORD( isWholeWord )
+    let l:cWORD = expand('<cWORD>')
+    if ! empty(l:cWORD)
+	let s:pattern = ingo#regexp#EscapeLiteralText(l:cWORD, '')
+	if a:isWholeWord
+	    let s:pattern = ingo#regexp#MakeWholeWORDSearch(l:cWORD, s:pattern)
+	endif
     endif
     return s:pattern
 endfunction

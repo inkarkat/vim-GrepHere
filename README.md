@@ -59,20 +59,32 @@ USAGE
     <A-M>                   Grep the current whole word under the cursor in the
                             current file and show matching lines in the quickfix
                             window (but don't go there).
+                            Only whole keywords are searched for, like with the
+                            star command.
                             This is similar to [I defined by
                             FindOccurrence.vim, but uses the quickfix list
                             instead of just printing all matching lines.
     g<A-M>                  Grep the current word under the cursor in the current
                             file and show matching lines in the quickfix window
                             (but don't go there).
-                            Only whole keywords are searched for, like with the
-                            star command.
+                            Also finds contained matches, like gstar.
     {Visual}<A-M>           Grep the selected text in the current file and show
                             matching lines in the quickfix window (but don't go
                             there).
 
                             Imagine 'M' stood for "more occurrences".
                             These mappings reuse the last used <cword> when issued
+                            on a blank line.
+
+    ,<A-M>                  Grep the current whole (i.e. delimited by whitespace)
+                            WORD under the cursor in the current file and show
+                            matching lines in the quickfix window (but don't go
+                            there).
+    g,<A-M>                 Grep the current WORD under the cursor in the current
+                            file and show matching lines in the quickfix window
+                            (but don't go there).
+                            Also finds contained matches, like gstar.
+                            These mappings reuse the last used <cWORD> when issued
                             on a blank line.
 
 INSTALLATION
@@ -97,7 +109,7 @@ To uninstall, use the :RmVimball command.
 ### DEPENDENCIES
 
 - Requires Vim 7.0 or higher.
-- Requires the ingo-library.vim plugin ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)), version 1.012 or
+- Requires the ingo-library.vim plugin ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)), version 1.036 or
   higher.
 - Requires the GrepCommands.vim plugin ([vimscript #4173](http://www.vim.org/scripts/script.php?script_id=4173)), version 1.02 or
   higher.
@@ -129,6 +141,8 @@ vimrc):
     nmap <Leader>N <Plug>(GrepHereCurrent)
     nmap <Leader>M <Plug>(GrepHereWholeCword)
     nmap <Leader>gM <Plug>(GrepHereCword)
+    nmap <Leader>W <Plug>(GrepHereWholeCWORD)
+    nmap <Leader>gW <Plug>(GrepHereCWORD)
     vmap <Leader>M <Plug>(GrepHereCword)
 
 LIMITATIONS
@@ -144,6 +158,12 @@ https://github.com/inkarkat/vim-GrepHere/issues or email (address below).
 
 HISTORY
 ------------------------------------------------------------------------------
+
+##### 1.20    RELEASEME
+- ENH: Add [g],<A-M> variants of [g]<A-M> that use (whole) WORD instead of
+  word.
+
+__You need to update to ingo-library ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)) version 1.036!__
 
 ##### 1.11    29-Nov-2016
 - ENH: Allow [range] for :GrepHere.
@@ -167,7 +187,7 @@ to first occurrence.
 - Started development.
 
 ------------------------------------------------------------------------------
-Copyright: (C) 2003-2018 Ingo Karkat -
+Copyright: (C) 2003-2019 Ingo Karkat -
 The [VIM LICENSE](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license) applies to this plugin.
 
 Maintainer:     Ingo Karkat <ingo@karkat.de>
