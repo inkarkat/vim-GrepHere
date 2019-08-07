@@ -61,7 +61,7 @@ USAGE							      *GrepHere-usage*
 			the current entry of the quickfix list).
 
 								 *ALT-SHIFT-N*
-<A-N>			Grep the last search pattern in the current file
+ALT-N			Grep the last search pattern in the current file
 			and show matching lines in the quickfix window (but
 			don't go there).
 			This is similar to |[N| defined by
@@ -69,7 +69,7 @@ USAGE							      *GrepHere-usage*
 			instead of just printing all matching lines.
 
 				 *ALT-SHIFT-M* *g_ALT-SHIFT-M* *v_ALT-SHIFT-M*
-<A-M>			Grep the current whole word under the cursor in the
+ALT-M			Grep the current whole word under the cursor in the
 			current file and show matching lines in the quickfix
 			window (but don't go there).
 			Only whole keywords are searched for, like with the
@@ -77,11 +77,11 @@ USAGE							      *GrepHere-usage*
 			This is similar to |[I| defined by
 			|FindOccurrence.vim|, but uses the quickfix list
 			instead of just printing all matching lines.
-g<A-M>			Grep the current word under the cursor in the current
+g_ALT-M			Grep the current word under the cursor in the current
 			file and show matching lines in the quickfix window
 			(but don't go there).
 			Also finds contained matches, like |gstar|.
-{Visual}<A-M>		Grep the selected text in the current file and show
+{Visual}ALT-M		Grep the selected text in the current file and show
 			matching lines in the quickfix window (but don't go
 			there).
 
@@ -90,11 +90,11 @@ g<A-M>			Grep the current word under the cursor in the current
 			on a blank line.
 
 					       *,ALT-SHIFT-M* *g,_ALT-SHIFT-M*
-,<A-M>			Grep the current whole (i.e. delimited by whitespace)
+,_ALT-M			Grep the current whole (i.e. delimited by whitespace)
 			WORD under the cursor in the current file and show
 			matching lines in the quickfix window (but don't go
 			there).
-g,<A-M>			Grep the current WORD under the cursor in the current
+g,_ALT-M		Grep the current WORD under the cursor in the current
 			file and show matching lines in the quickfix window
 			(but don't go there).
 			Also finds contained matches, like |gstar|.

@@ -49,14 +49,14 @@ USAGE
                             omitted) in (line in [range] of) the current file (or
                             the current entry of the quickfix list).
 
-    <A-N>                   Grep the last search pattern in the current file
+    ALT-N                   Grep the last search pattern in the current file
                             and show matching lines in the quickfix window (but
                             don't go there).
                             This is similar to [N defined by
                             FindOccurrence.vim, but uses the quickfix list
                             instead of just printing all matching lines.
 
-    <A-M>                   Grep the current whole word under the cursor in the
+    ALT-M                   Grep the current whole word under the cursor in the
                             current file and show matching lines in the quickfix
                             window (but don't go there).
                             Only whole keywords are searched for, like with the
@@ -64,11 +64,11 @@ USAGE
                             This is similar to [I defined by
                             FindOccurrence.vim, but uses the quickfix list
                             instead of just printing all matching lines.
-    g<A-M>                  Grep the current word under the cursor in the current
+    g_ALT-M                 Grep the current word under the cursor in the current
                             file and show matching lines in the quickfix window
                             (but don't go there).
                             Also finds contained matches, like gstar.
-    {Visual}<A-M>           Grep the selected text in the current file and show
+    {Visual}ALT-M           Grep the selected text in the current file and show
                             matching lines in the quickfix window (but don't go
                             there).
 
@@ -76,11 +76,11 @@ USAGE
                             These mappings reuse the last used <cword> when issued
                             on a blank line.
 
-    ,<A-M>                  Grep the current whole (i.e. delimited by whitespace)
+    ,_ALT-M                 Grep the current whole (i.e. delimited by whitespace)
                             WORD under the cursor in the current file and show
                             matching lines in the quickfix window (but don't go
                             there).
-    g,<A-M>                 Grep the current WORD under the cursor in the current
+    g,_ALT-M                Grep the current WORD under the cursor in the current
                             file and show matching lines in the quickfix window
                             (but don't go there).
                             Also finds contained matches, like gstar.
@@ -135,7 +135,7 @@ flags:
     let g:GrepHere_MappingGrepFlags = 'gj'
 
 If you want to use different mappings, map your keys to the
-<Plug>(GrepHere...) mapping targets _before_ sourcing the script (e.g. in your
+&lt;Plug&gt;(GrepHere...) mapping targets _before_ sourcing the script (e.g. in your
 vimrc):
 
     nmap <Leader>N <Plug>(GrepHereCurrent)
@@ -160,7 +160,7 @@ HISTORY
 ------------------------------------------------------------------------------
 
 ##### 1.20    RELEASEME
-- ENH: Add [g],<A-M> variants of [g]<A-M> that use (whole) WORD instead of
+- ENH: Add [g],&lt;A-M&gt; variants of [g]&lt;A-M&gt; that use (whole) WORD instead of
   word.
 
 __You need to update to ingo-library ([vimscript #4433](http://www.vim.org/scripts/script.php?script_id=4433)) version 1.036!__
@@ -190,4 +190,4 @@ to first occurrence.
 Copyright: (C) 2003-2019 Ingo Karkat -
 The [VIM LICENSE](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license) applies to this plugin.
 
-Maintainer:     Ingo Karkat <ingo@karkat.de>
+Maintainer:     Ingo Karkat &lt;ingo@karkat.de&gt;
