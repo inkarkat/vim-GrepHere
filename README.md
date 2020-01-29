@@ -37,6 +37,7 @@ command. http://vim.wikia.com/wiki/Search_using_quickfix_to_list_occurrences
   in a scratch buffer
 - ttoc ([vimscript #2014](http://www.vim.org/scripts/script.php?script_id=2014)) is based on outline and creates a regexp-based table
   of contents of the current buffer
+- [vim-qlist](https://github.com/romainl/vim-qlist) persists the results of :ilist and related commands in the quickfix list
 
 USAGE
 ------------------------------------------------------------------------------
