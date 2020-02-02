@@ -48,6 +48,9 @@ RELATED WORKS								     *
   in a scratch buffer
 - ttoc (vimscript #2014) is based on outline and creates a regexp-based table
   of contents of the current buffer
+- qlist (https://github.com/romainl/vim-qlist) persists :ilist (and related)
+  in the quickfix list, so it works like :GrepHere, but is also covering any
+  included files
 
 ==============================================================================
 USAGE							      *GrepHere-usage*
@@ -200,7 +203,7 @@ First published version.
 Started development.
 
 ==============================================================================
-Copyright: (C) 2003-2019 Ingo Karkat
+Copyright: (C) 2003-2020 Ingo Karkat
 The VIM LICENSE applies to this plugin; see |copyright|.
 
 Maintainer:	Ingo Karkat <ingo@karkat.de>
