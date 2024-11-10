@@ -27,8 +27,7 @@ The plugin uses |:vimgrep| over the current buffer.
 SOURCE									     *
 
 Inspired by vimtip #483: Using GREP for a "list occurrences" and quickfix help
-command.
-    http://vim.wikia.com/wiki/Search_using_quickfix_to_list_occurrences >
+command. http://vim.wikia.com/wiki/Search_using_quickfix_to_list_occurrences >
     command GREP :execute 'grep '.expand('<cword>') expand('%') | :copen | cc
 <
 SEE ALSO								     *
@@ -49,6 +48,9 @@ RELATED WORKS								     *
   in a scratch buffer
 - ttoc (vimscript #2014) is based on outline and creates a regexp-based table
   of contents of the current buffer
+- qlist (https://github.com/romainl/vim-qlist) persists :ilist (and related)
+  in the quickfix list, so it works like :GrepHere, but is also covering any
+  included files
 
 ==============================================================================
 USAGE							      *GrepHere-usage*
@@ -62,26 +64,27 @@ USAGE							      *GrepHere-usage*
 			the current entry of the quickfix list).
 
 								 *ALT-SHIFT-N*
-<A-N>			Grep the last search pattern in the current file
+ALT-N			Grep the last search pattern in the current file
 			and show matching lines in the quickfix window (but
 			don't go there).
 			This is similar to |[N| defined by
 			|FindOccurrence.vim|, but uses the quickfix list
 			instead of just printing all matching lines.
 
-						 *ALT-SHIFT-M* *v_ALT-SHIFT-M*
-<A-M>			Grep the current whole word under the cursor in the
+				 *ALT-SHIFT-M* *g_ALT-SHIFT-M* *v_ALT-SHIFT-M*
+ALT-M			Grep the current whole word under the cursor in the
 			current file and show matching lines in the quickfix
 			window (but don't go there).
+			Only whole keywords are searched for, like with the
+			|star| command.
 			This is similar to |[I| defined by
 			|FindOccurrence.vim|, but uses the quickfix list
 			instead of just printing all matching lines.
-g<A-M>			Grep the current word under the cursor in the current
+g_ALT-M			Grep the current word under the cursor in the current
 			file and show matching lines in the quickfix window
 			(but don't go there).
-			Only whole keywords are searched for, like with the
-			|star| command.
-{Visual}<A-M>		Grep the selected text in the current file and show
+			Also finds contained matches, like |gstar|.
+{Visual}ALT-M		Grep the selected text in the current file and show
 			matching lines in the quickfix window (but don't go
 			there).
 
@@ -89,13 +92,31 @@ g<A-M>			Grep the current word under the cursor in the current
 			These mappings reuse the last used <cword> when issued
 			on a blank line.
 
+					       *,ALT-SHIFT-M* *g,_ALT-SHIFT-M*
+,_ALT-M			Grep the current whole (i.e. delimited by whitespace)
+			WORD under the cursor in the current file and show
+			matching lines in the quickfix window (but don't go
+			there).
+g,_ALT-M		Grep the current WORD under the cursor in the current
+			file and show matching lines in the quickfix window
+			(but don't go there).
+			Also finds contained matches, like |gstar|.
+			These mappings reuse the last used <cWORD> when issued
+			on a blank line.
+
 ==============================================================================
 INSTALLATION					       *GrepHere-installation*
 
-This script is packaged as a |vimball|. If you have the "gunzip" decompressor
-in your PATH, simply edit the *.vmb.gz package in Vim; otherwise, decompress
-the archive first, e.g. using WinZip. Inside Vim, install by sourcing the
-vimball or via the |:UseVimball| command. >
+The code is hosted in a Git repo at
+    https://github.com/inkarkat/vim-GrepHere
+You can use your favorite plugin manager, or "git clone" into a directory used
+for Vim |packages|. Releases are on the "stable" branch, the latest unstable
+development snapshot on "master".
+
+This script is also packaged as a |vimball|. If you have the "gunzip"
+decompressor in your PATH, simply edit the *.vmb.gz package in Vim; otherwise,
+decompress the archive first, e.g. using WinZip. Inside Vim, install by
+sourcing the vimball or via the |:UseVimball| command. >
     vim GrepHere*.vmb.gz
     :so %
 To uninstall, use the |:RmVimball| command.
@@ -103,7 +124,7 @@ To uninstall, use the |:RmVimball| command.
 DEPENDENCIES					       *GrepHere-dependencies*
 
 - Requires Vim 7.0 or higher.
-- Requires the |ingo-library.vim| plugin (vimscript #4433), version 1.012 or
+- Requires the |ingo-library.vim| plugin (vimscript #4433), version 1.036 or
   higher.
 - Requires the |GrepCommands.vim| plugin (vimscript #4173), version 1.02 or
   higher.
@@ -133,6 +154,8 @@ If you want to use different mappings, map your keys to the
     nmap <Leader>N <Plug>(GrepHereCurrent)
     nmap <Leader>M <Plug>(GrepHereWholeCword)
     nmap <Leader>gM <Plug>(GrepHereCword)
+    nmap <Leader>W <Plug>(GrepHereWholeCWORD)
+    nmap <Leader>gW <Plug>(GrepHereCWORD)
     vmap <Leader>M <Plug>(GrepHereCword)
 <
 ==============================================================================
@@ -147,8 +170,18 @@ TODO							       *GrepHere-todo*
 
 IDEAS							      *GrepHere-ideas*
 
+CONTRIBUTING						 *GrepHere-contribute*
+
+Report any bugs, send patches, or suggest features via the issue tracker at
+https://github.com/inkarkat/vim-GrepHere/issues or email (address below).
+
 ==============================================================================
 HISTORY							    *GrepHere-history*
+
+1.20	10-Nov-2024
+- ENH: Add [g],<A-M> variants of [g]<A-M> that use (whole) WORD instead of
+  word.
+  *** You need to update to ingo-library (vimscript #4433) version 1.036! ***
 
 1.11	29-Nov-2016
 - ENH: Allow [range] for :GrepHere.
@@ -170,7 +203,7 @@ First published version.
 Started development.
 
 ==============================================================================
-Copyright: (C) 2003-2017 Ingo Karkat
+Copyright: (C) 2003-2024 Ingo Karkat
 The VIM LICENSE applies to this plugin; see |copyright|.
 
 Maintainer:	Ingo Karkat <ingo@karkat.de>
