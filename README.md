@@ -162,7 +162,7 @@ https://github.com/inkarkat/vim-GrepHere/issues or email (address below).
 HISTORY
 ------------------------------------------------------------------------------
 
-##### 1.20    RELEASEME
+##### 1.20    10-Nov-2024
 - ENH: Add [g],&lt;A-M&gt; variants of [g]&lt;A-M&gt; that use (whole) WORD instead of
   word.
 
@@ -190,7 +190,7 @@ to first occurrence.
 - Started development.
 
 ------------------------------------------------------------------------------
-Copyright: (C) 2003-2020 Ingo Karkat -
+Copyright: (C) 2003-2024 Ingo Karkat -
 The [VIM LICENSE](http://vimdoc.sourceforge.net/htmldoc/uganda.html#license) applies to this plugin.
 
 Maintainer:     Ingo Karkat &lt;ingo@karkat.de&gt;
